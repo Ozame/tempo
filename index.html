@@ -13,12 +13,13 @@
 
 <body>
     <div id="clock">
-        <p>{{ timer }}</p>
+        <p>{{ hours }}:{{ minutes }}:{{ seconds }}</p>
         <div class="time-input">
-            <label for="" class="time-label"><input type="text" pattern="[0-0]" class="hours"></label>
-            <label for="" class="time-label"><input type="text" pattern="[0-0]" class="minutes"></label>
-            <label for="" class="time-label"><input type="text" pattern="[0-0]" class="seconds"></label>
+            <label for="input-hours" class="time-label"><input id="input-hours" type="text" pattern="[0-0]" class="hours"></label>
+            <label for="input-minutes" class="time-label"><input id="input-minutes" type="text" pattern="[0-0]" class="minutes"></label>
+            <label for="input-seconds" class="time-label"><input id="input-seconds" type="text" pattern="[0-0]" class="seconds"></label>
         </div>
+        <button @click="startTimer">Start</button>
     </div>
 
 
