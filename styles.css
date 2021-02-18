@@ -1,0 +1,10 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#clock {
+    width: 100vw;
+    height: 100vh;
+    font-size: 40vw;
+}
