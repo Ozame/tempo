@@ -24,6 +24,7 @@
         <label for="input-loop">Loop timer?</label>
         <input type="checkbox" name="loop" id="input-loop" v-model="looping">
         <button @click="startTimer">{{ timerInterval ? 'Stop' : 'Start' }}</button>
+        <button :disabled="!timerHasStarted" @click="resetTimer">Reset</button>
     </div>
 
 
