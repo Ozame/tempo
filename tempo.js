@@ -1,20 +1,19 @@
 const VueApp = Vue.createApp({
     methods: {
         startTimer() {
-            console.log("starting timer")
             if (!this.timerInterval) {
                 this.timerInterval = setInterval(() => (this.timePassed++), 1000)
             } else {
                 this.clearTimer()
             }
-            //Start timer here
         },
         clearTimer() {
             clearInterval(this.timerInterval)
             this.timerInterval = null
         },
         countdownFinished() {
-            console.log("Countdown done!")
+            let audio = new Audio('assets/gong.mp3')
+            audio.play()
         }
     },
     data() {
