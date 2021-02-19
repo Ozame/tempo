@@ -1,7 +1,7 @@
 const VueApp = Vue.createApp({
     methods: {
         startTimer() {
-            if (!this.timerInterval) {
+            if (!this.timerInterval && this.timeLimit > 0) {
                 this.timerInterval = setInterval(() => (this.timePassed++), 1000)
                 this.timerHasStarted = true
             } else {
@@ -35,9 +35,11 @@ const VueApp = Vue.createApp({
         }
     },
     computed: {
+        timeLimit() {
+            return this.hours * 3600 + this.minutes * 60 + this.seconds
+        },
         timeLeft() {
-            const timeLimit = this.hours * 3600 + this.minutes * 60 + this.seconds
-            const left = timeLimit - this.timePassed
+            const left = this.timeLimit - this.timePassed
             if (left < 0) {
                 if (!this.looping) {
                     this.clearTimer()
@@ -46,7 +48,7 @@ const VueApp = Vue.createApp({
                 this.timePassed = 0
                 this.countdownFinished()
             }
-            return timeLimit - this.timePassed
+            return left
         }
     }
 
