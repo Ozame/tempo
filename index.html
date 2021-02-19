@@ -13,14 +13,16 @@
 
 <body>
     <div id="clock">
-        <p>
+        <span>
             <counter :time-left="timeLeft"></counter>
-        </p>
+        </span>
         <div class="time-input">
             <label for="input-hours" class="time-label"><input id="input-hours" type="number"  class="hours" v-model.number="hours" min=0></label>
             <label for="input-minutes" class="time-label"><input id="input-minutes" type="number"  class="minutes" v-model.number="minutes" min=0></label>
             <label for="input-seconds" class="time-label"><input id="input-seconds" type="number" class="seconds" v-model.number="seconds" min=0></label>
         </div>
+        <label for="input-loop">Loop timer?</label>
+        <input type="checkbox" name="loop" id="input-loop" v-model="looping">
         <button @click="startTimer">{{ timerInterval ? 'Stop' : 'Start' }}</button>
     </div>
 
