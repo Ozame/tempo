@@ -1,31 +1,76 @@
-const Counter = {
-    data() {
-      return {
-        time: 3600,
-        timer: 0
-
-      }
+const VueApp = Vue.createApp({
+    methods: {
+        startTimer() {
+            console.log("starting timer")
+            if (!this.timerInterval) {
+                this.timerInterval = setInterval(() => (this.timePassed++), 1000)
+            } else {
+                this.clearTimer()
+            }
+            //Start timer here
+        },
+        clearTimer() {
+            clearInterval(this.timerInterval)
+            this.timerInterval = null
+        },
+        countdownFinished() {
+            console.log("Countdown done!")
+        }
     },
-    mounted() {
-        
+    data() {
+        return {
+            timePassed: 0,
+            hours: 0,
+            minutes: 0,
+            seconds: 0,
+            timerInterval: null
+
+        }
     },
     computed: {
-        hours() {
-            return this.minutes/60
-        },
-        minutes() {
-            return this.timer/60
-        },
-        seconds() {
-            return this.timer
-        }
-    },
-    methods: {
-        startTimer: () => {
-            console.log("starting timer")>
-           //Start timer here
+        timeLeft() {
+            const timeLimit = this.hours * 3600 + this.minutes * 60 + this.seconds
+            const left = timeLimit - this.timePassed
+            if (left <= 0) {
+                this.clearTimer()
+                this.countdownFinished()
+            }
+            return timeLimit - this.timePassed
         }
     }
-  }
-  
-  Vue.createApp(Counter).mount('#clock')
+
+})
+
+const Counter = {
+    template: '{{ formattedTimeLeft }}',
+    props: {
+        timeLeft: {
+            type: Number,
+            required: true
+        }
+    },
+
+    computed: {
+        formattedTimeLeft() {
+            const timeLeft = this.timeLeft
+            let hours = Math.floor(this.timeLeft / 3600)
+            let minutes = Math.floor((this.timeLeft / 60) % 60)
+            let seconds = timeLeft % 60
+            if (hours < 10) {
+                hours = `0${hours}`
+            }
+            if (minutes < 10) {
+                minutes = `0${minutes}`
+            }
+            if (seconds < 10) {
+                seconds = `0${seconds}`
+            }
+            return `${hours}:${minutes}:${seconds}`
+        }
+
+    },
+
+}
+
+VueApp.component('counter', Counter)
+VueApp.mount('#clock')

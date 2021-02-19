@@ -13,13 +13,15 @@
 
 <body>
     <div id="clock">
-        <p>{{ hours }}:{{ minutes }}:{{ seconds }}</p>
+        <p>
+            <counter :time-left="timeLeft"></counter>
+        </p>
         <div class="time-input">
-            <label for="input-hours" class="time-label"><input id="input-hours" type="text" pattern="[0-0]" class="hours"></label>
-            <label for="input-minutes" class="time-label"><input id="input-minutes" type="text" pattern="[0-0]" class="minutes"></label>
-            <label for="input-seconds" class="time-label"><input id="input-seconds" type="text" pattern="[0-0]" class="seconds"></label>
+            <label for="input-hours" class="time-label"><input id="input-hours" type="number"  class="hours" v-model.number="hours" min=0></label>
+            <label for="input-minutes" class="time-label"><input id="input-minutes" type="number"  class="minutes" v-model.number="minutes" min=0></label>
+            <label for="input-seconds" class="time-label"><input id="input-seconds" type="number" class="seconds" v-model.number="seconds" min=0></label>
         </div>
-        <button @click="startTimer">Start</button>
+        <button @click="startTimer">{{ timerInterval ? 'Stop' : 'Start' }}</button>
     </div>
 
 
