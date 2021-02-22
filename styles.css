@@ -13,3 +13,8 @@ button {
     width: 10vmin;
     height: auto;
 }
+
+#counter {
+    display: block;
+    width: 100vw;
+}

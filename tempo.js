@@ -3,7 +3,7 @@ const VueApp = Vue.createApp({
         startTimer() {
             if (!this.timerInterval && this.timeLimit > 0) {
                 this.timerInterval = setInterval(() => (this.timePassed++), 1000)
-                this.timerHasStarted = true
+                this.resetIsDisabled = false
             } else {
                 this.clearTimer()
             }
@@ -15,7 +15,7 @@ const VueApp = Vue.createApp({
         resetTimer() {
             this.clearTimer()
             this.timePassed = 0
-            this.timerHasStarted = false
+            this.resetIsDisabled = true
         },
         countdownFinished() {
             let audio = new Audio('assets/gong.mp3')
@@ -24,7 +24,7 @@ const VueApp = Vue.createApp({
     },
     data() {
         return {
-            timerHasStarted: false,
+            resetIsDisabled: true,
             timePassed: 0,
             hours: 0,
             minutes: 0,
@@ -40,10 +40,9 @@ const VueApp = Vue.createApp({
         },
         timeLeft() {
             const left = this.timeLimit - this.timePassed
-            if (left < 0) {
+            if (left <= 0) {
                 if (!this.looping) {
                     this.clearTimer()
-                    this.timerHasStarted = false
                 }
                 this.timePassed = 0
                 this.countdownFinished()

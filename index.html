@@ -13,7 +13,7 @@
 
 <body>
     <div id="clock">
-        <span>
+        <span id="counter">
             <counter :time-left="timeLeft"></counter>
         </span>
         <div class="time-input">
@@ -24,7 +24,7 @@
         <label for="input-loop">Loop timer?</label>
         <input type="checkbox" name="loop" id="input-loop" v-model="looping">
         <button :disabled="!timeLimit" @click="startTimer">{{ timerInterval ? 'Stop' : 'Start' }}</button>
-        <button :disabled="!timerHasStarted" @click="resetTimer">Reset</button>
+        <button :disabled="resetIsDisabled" @click="resetTimer">Reset</button>
     </div>
 
 
