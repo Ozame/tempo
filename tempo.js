@@ -40,11 +40,12 @@ const VueApp = Vue.createApp({
         },
         timeLeft() {
             const left = this.timeLimit - this.timePassed
-            if (left <= 0) {
+            if (left === 0) {
                 if (!this.looping) {
                     this.clearTimer()
+                } else if (this.looping) {
+                    this.timePassed = 0
                 }
-                this.timePassed = 0
                 this.countdownFinished()
             }
             return left
