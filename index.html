@@ -5,7 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
 
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/vue@next"></script>
     <link rel="stylesheet" type="text/css" href="styles.css" />
     <title>Tempo</title>
@@ -13,18 +17,26 @@
 
 <body>
     <div id="clock">
+        <h1>Tempo</h1>
         <span id="counter">
             <counter :time-left="timeLeft"></counter>
         </span>
         <div class="time-input">
-            <label for="input-hours" class="time-label"><input id="input-hours" type="number"  class="hours" v-model.number="hours" min=0></label>
-            <label for="input-minutes" class="time-label"><input id="input-minutes" type="number"  class="minutes" v-model.number="minutes" min=0></label>
-            <label for="input-seconds" class="time-label"><input id="input-seconds" type="number" class="seconds" v-model.number="seconds" min=0></label>
+            <label for="input-hours" class="time-label"><input id="input-hours" type="number" class="hours"
+                    v-model.number="hours" min=0></label>
+            <label for="input-minutes" class="time-label"><input id="input-minutes" type="number" class="minutes"
+                    v-model.number="minutes" min=0></label>
+            <label for="input-seconds" class="time-label"><input id="input-seconds" type="number" class="seconds"
+                    v-model.number="seconds" min=0></label>
         </div>
-        <label for="input-loop">Loop timer?</label>
-        <input type="checkbox" name="loop" id="input-loop" v-model="looping">
-        <button :disabled="!timeLimit" @click="startTimer">{{ timerInterval ? 'Stop' : 'Start' }}</button>
-        <button :disabled="resetIsDisabled" @click="resetTimer">Reset</button>
+        <label class="container">Loop
+            <input type="checkbox" name="loop" id="input-loop" v-model="looping">
+            <span class="checkmark"></span>
+        </label>
+
+        <button id="button-start" :disabled="!timeLimit" @click="startTimer">{{ timerInterval ? 'Stop' : 'Start'
+            }}</button>
+        <button id="button-reset" :disabled="resetIsDisabled" @click="resetTimer">Reset</button>
     </div>
 
 

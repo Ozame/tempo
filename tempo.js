@@ -55,7 +55,10 @@ const VueApp = Vue.createApp({
 })
 
 const Counter = {
-    template: '{{ formattedTimeLeft }}',
+    template: '<span>{{ formattedTimeLeft }}</span>',
+    style: {
+    
+    },
     props: {
         timeLeft: {
             type: Number,
