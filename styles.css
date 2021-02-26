@@ -21,7 +21,7 @@ h1 {
     height: 100vh;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: 5vmin 40vw 2fr;
+    grid-template-rows: 5vmin 40vw 12vmin 1fr;
 }
 
 #counter {
@@ -35,6 +35,13 @@ h1 {
     grid-row: 2/3;
     cursor: default;
     color: var(--light-accent);
+}
+
+
+#counter span {
+    width: 80%;
+    height: auto;
+    text-align: center;
 }
 
 button {
@@ -54,11 +61,6 @@ button:disabled {
     color: gray;
 }
 
-#counter span {
-    width: 80%;
-    height: auto;
-}
-
 #button-start {
     /* row-start/col-start/row-end/col-end */
   grid-area: 3 / 2 / 4 / 3 
@@ -75,4 +77,8 @@ button:disabled {
     cursor: pointer;
     font-size: 2vmin;
     padding: 8px;
+}
+
+.time-input {
+    grid-area: 4 / 2 / 5 / 4;
 }

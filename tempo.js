@@ -57,7 +57,7 @@ const VueApp = Vue.createApp({
 const Counter = {
     template: '<span>{{ formattedTimeLeft }}</span>',
     style: {
-    
+
     },
     props: {
         timeLeft: {
@@ -72,6 +72,7 @@ const Counter = {
             let hours = Math.floor(this.timeLeft / 3600)
             let minutes = Math.floor((this.timeLeft / 60) % 60)
             let seconds = timeLeft % 60
+            console.log(timeLeft)
             if (hours < 10) {
                 hours = `0${hours}`
             }
@@ -81,7 +82,10 @@ const Counter = {
             if (seconds < 10) {
                 seconds = `0${seconds}`
             }
-            return `${hours}:${minutes}:${seconds}`
+            noHours = hours === "00"
+            noMinutes = minutes === "00"
+            return `${noHours ? '' : hours + ':'}${noHours && noMinutes ? '' : minutes + ':'}${seconds}`
+
         }
 
     },
