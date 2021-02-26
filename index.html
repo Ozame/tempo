@@ -29,7 +29,7 @@
             <label for="input-seconds" class="time-label"><input id="input-seconds" type="number" class="seconds"
                     v-model.number="seconds" min=0></label>
         </div>
-        <label class="container">Loop
+        <label class="container" :class="[!looping ? 'checked-label' : '']">Loop
             <input type="checkbox" name="loop" id="input-loop" v-model="looping">
             <span class="checkmark"></span>
         </label>
