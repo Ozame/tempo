@@ -15,7 +15,7 @@ html {
 }
 
 h1 {
-    font-size: 4vmin;
+    font-size: 3vmin;
     color: var(--dark-accent);
     padding: 8px;
 }
@@ -80,8 +80,9 @@ button:disabled {
     grid-area: 3 / 4 / 4 / 5;
     opacity: 1;
     cursor: pointer;
-    font-size: 4vmin;
-    padding: 8px;
+    font-size: 5vmin;
+    padding-top: 10px;
+    padding-left: 10px;
     /* TODO: change color on checking */
 }
 
@@ -161,4 +162,11 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type=number] {
   -moz-appearance: textfield;
+}
+
+
+@media screen and (min-width: 600px) {
+    #counter {
+        font-size: min(45vmin, 1000px);
+    }
 }
