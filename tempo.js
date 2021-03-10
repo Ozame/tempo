@@ -20,6 +20,18 @@ const VueApp = Vue.createApp({
         countdownFinished() {
             let audio = new Audio('assets/gong.ogg')
             audio.play()
+        },
+        submitTime() {
+            this.currentTimer = this.hours * 3600 + this.minutes * 60 + this.seconds
+           this.toggleInputs()
+        },
+        toggleInputs() {
+            let overlay = document.getElementById("input-overlay")
+            if (overlay.style.display === "block") {
+                overlay.style.display = "none"
+            } else {
+                overlay.style.display = "block"
+            }
         }
     },
     data() {
@@ -29,6 +41,7 @@ const VueApp = Vue.createApp({
             hours: 0,
             minutes: 0,
             seconds: 5,
+            currentTimer: 0,
             timerInterval: null,
             looping: false
 
@@ -36,11 +49,12 @@ const VueApp = Vue.createApp({
     },
     computed: {
         timeLimit() {
-            return this.hours * 3600 + this.minutes * 60 + this.seconds
+            // return this.hours * 3600 + this.minutes * 60 + this.seconds
+            return this.currentTimer
         },
         timeLeft() {
             const left = this.timeLimit - this.timePassed
-            if (left === 0) {
+            if (left === 0 && this.timerInterval) {
                 if (!this.looping) {
                     this.clearTimer()
                 } else if (this.looping) {

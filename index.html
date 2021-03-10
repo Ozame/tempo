@@ -18,16 +18,21 @@
 <body>
     <div id="clock">
         <h1>Tempo</h1>
-        <span id="counter">
+        <span id="counter" @click="toggleInputs">
             <counter :time-left="timeLeft"></counter>
         </span>
-        <div class="time-input">
-            <label for="input-hours" class="time-label"><input id="input-hours" type="number" class="hours"
-                    v-model.number="hours" min=0></label>
-            <label for="input-minutes" class="time-label"><input id="input-minutes" type="number" class="minutes"
-                    v-model.number="minutes" min=0></label>
-            <label for="input-seconds" class="time-label"><input id="input-seconds" type="number" class="seconds"
-                    v-model.number="seconds" min=0></label>
+        <div id="input-overlay">
+            <div class="time-input">
+                <div class="time-input-fields">
+                <label for="input-hours" class="time-label"><input id="input-hours" type="number" class="hours"
+                        v-model.number="hours" min=0></label>
+                <label for="input-minutes" class="time-label"><input id="input-minutes" type="number" class="minutes"
+                        v-model.number="minutes" min=0></label>
+                <label for="input-seconds" class="time-label"><input id="input-seconds" type="number" class="seconds"
+                        v-model.number="seconds" min=0></label>
+                    </div>
+                <button id="button-timesubmit" @click="submitTime">Set time</button>
+            </div>
         </div>
         <label class="container" :class="[!looping ? 'checked-label' : '']">Loop
             <input type="checkbox" name="loop" id="input-loop" v-model="looping">
