@@ -18,7 +18,7 @@ const VueApp = Vue.createApp({
             this.resetIsDisabled = true
         },
         countdownFinished() {
-            let audio = new Audio('assets/gong.mp3')
+            let audio = new Audio('assets/gong.ogg')
             audio.play()
         }
     },
