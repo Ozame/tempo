@@ -111,6 +111,29 @@ const VueApp = Vue.createApp({
 
 })
 
+const ListTimer = {
+    template: '<p>{{ formattedTime }}</p>',
+    style: {
+    },
+    props: {
+        time: {
+            type: Number,
+            required: true
+        },
+        name: {type: String,
+            required: true},
+        color: {type: String,
+                required: false}
+    },
+    computed: {
+        formattedTime() {
+            return formatTime(this.time)
+        }
+    }
+}
+
+
+
 const Counter = {
     template: '<span>{{ formattedTimeLeft }}</span>',
     style: {
@@ -149,4 +172,24 @@ const Counter = {
 }
 
 VueApp.component('counter', Counter)
+VueApp.component('list-timer', ListTimer)
 VueApp.mount('#clock')
+
+
+function formatTime(time) {
+            let hours = Math.floor(time / 3600)
+            let minutes = Math.floor((time / 60) % 60)
+            let seconds = time % 60
+            if (hours < 10) {
+                hours = `0${hours}`
+            }
+            if (minutes < 10) {
+                minutes = `0${minutes}`
+            }
+            if (seconds < 10) {
+                seconds = `0${seconds}`
+            }
+            noHours = hours === "00"
+            noMinutes = minutes === "00"
+            return `${hours}:${minutes}:${seconds}`
+}

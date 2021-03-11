@@ -43,6 +43,14 @@
         <button id="button-start" :disabled="!timeLimit" @click="startTimer">{{ timerInterval ? 'Stop' : 'Start'
             }}</button>
         <button id="button-reset" :disabled="resetIsDisabled" @click="resetTimer">Reset</button>
+
+        <div class="timer-list">
+            <list-timer v-for="timer in timers"
+            v-bind:time="timer.time"
+            v-bind:key="timer.name"
+            v-bind:name="timer.name">
+        </list-timer>
+        </div>
     </div>
 
 
