@@ -15,6 +15,8 @@ const VueApp = Vue.createApp({
         resetTimer() {
             this.clearTimer()
             this.timePassed = 0
+            this.timerIndex = 0
+            this.currentTimer = this.timers[this.timerIndex].time
             this.resetIsDisabled = true
         },
         countdownFinished() {
@@ -26,8 +28,8 @@ const VueApp = Vue.createApp({
             audio.play()
         },
         submitTime() {
-            this.currentTimer = this.hours * 3600 + this.minutes * 60 + this.seconds
-           this.toggleInputs()
+            this.currentTimer = this.timers[this.timerIndex].time
+            this.toggleInputs()
         },
         toggleInputs() {
             let overlay = document.getElementById("input-overlay")
@@ -46,15 +48,30 @@ const VueApp = Vue.createApp({
             minutes: 0,
             seconds: 5,
             currentTimer: 0,
+            timerIndex: 0,
             timerInterval: null,
-            looping: false
-
+            looping: false,
+            timers: [{
+                    name: "Work",
+                    time: 5,
+                    color: "#00f9ff"
+                },
+                {
+                    name: "Rest",
+                    time: 2,
+                    color: "#bb2167"
+                }
+            ],
         }
     },
     computed: {
         timeLimit() {
             // return this.hours * 3600 + this.minutes * 60 + this.seconds
             return this.currentTimer
+        },
+        timerTitle() {
+            return this.timers[this.timerIndex].name
+            //TODO: Place this in a good spot on page
         },
         timeLeft() {
             const left = this.timeLimit - this.timePassed
@@ -63,11 +80,29 @@ const VueApp = Vue.createApp({
                 this.beep()
             }
             if (left === 0 && this.timerInterval) {
-                if (!this.looping) {
-                    this.clearTimer()
-                } else if (this.looping) {
-                    this.timePassed = 0
+                this.timerIndex++
+
+                if (this.looping) {
+                    if (this.timerIndex === this.timers.length) {
+                        this.timePassed = 0
+                        this.timerIndex = 0
+                        this.currentTimer = this.timers[this.timerIndex].time
+                    } else {
+                        this.currentTimer = this.timers[this.timerIndex].time
+                    }
+
+                } else {
+                    if (this.timerIndex === this.timers.length) {
+                        this.clearTimer()
+                        this.timePassed = 0
+                        this.timerIndex = 0
+                        this.currentTimer = null
+                    } else {
+                        this.currentTimer = this.timers[this.timerIndex].time
+                    }
                 }
+
+                this.timePassed = 0
                 this.countdownFinished()
             }
             return left
