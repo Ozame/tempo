@@ -18,7 +18,11 @@ const VueApp = Vue.createApp({
             this.resetIsDisabled = true
         },
         countdownFinished() {
-            let audio = new Audio('assets/gong.ogg')
+            let audio = new Audio('assets/gong_3s.ogg')
+            audio.play()
+        },
+        beep() {
+            let audio = new Audio('assets/beep_1.ogg')
             audio.play()
         },
         submitTime() {
@@ -54,6 +58,10 @@ const VueApp = Vue.createApp({
         },
         timeLeft() {
             const left = this.timeLimit - this.timePassed
+            if ( 1 <= left && left <= 3) {
+                console.log(left)
+                this.beep()
+            }
             if (left === 0 && this.timerInterval) {
                 if (!this.looping) {
                     this.clearTimer()
