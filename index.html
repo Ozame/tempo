@@ -32,6 +32,7 @@
                         v-model.number="seconds" min=0></label>
                     </div>
                 <button id="button-timesubmit" @click="submitTime">Set time</button>
+                <button id="button-timecancel" @click="toggleInputs">Cancel</button>
             </div>
         </div>
         <label class="container" :class="[!looping ? 'checked-label' : '']">Loop
