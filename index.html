@@ -34,6 +34,16 @@
                 <button id="button-timesubmit" @click="submitTime">Set time</button>
                 <button id="button-timecancel" @click="toggleInputs">Cancel</button>
             </div>
+
+            <div class="timer-list">
+                <list-timer v-for="timer in timers"
+                v-bind:time="timer.time"
+                v-bind:key="timer.name"
+                v-bind:name="timer.name"
+
+            </list-timer>
+            <button id="button-addTimer" @click="addTimer">+</button>
+            </div>
         </div>
         <label class="container" :class="[!looping ? 'checked-label' : '']">Loop
             <input type="checkbox" name="loop" id="input-loop" v-model="looping">
@@ -44,13 +54,6 @@
             }}</button>
         <button id="button-reset" :disabled="resetIsDisabled" @click="resetTimer">Reset</button>
 
-        <div class="timer-list">
-            <list-timer v-for="timer in timers"
-            v-bind:time="timer.time"
-            v-bind:key="timer.name"
-            v-bind:name="timer.name">
-        </list-timer>
-        </div>
     </div>
 
 

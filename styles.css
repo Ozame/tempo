@@ -152,6 +152,13 @@ button:disabled {
     margin: 8px;
 }
 
+.timer-list {
+    /* Temporary position */
+    position: absolute;
+    top: 25%;
+    left: 15%; 
+}
+
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {

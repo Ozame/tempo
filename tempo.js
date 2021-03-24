@@ -1,5 +1,13 @@
 const VueApp = Vue.createApp({
     methods: {
+        addTimer() {
+            let newTimer = {
+                name: "Rest",
+                time: 0,
+                color: "#bb2167"
+            }
+            this.timers.push(newTimer)
+        },
         startTimer() {
             if (!this.timerInterval && this.timeLimit > 0) {
                 this.timerInterval = setInterval(() => (this.timePassed++), 1000)
@@ -128,6 +136,11 @@ const ListTimer = {
     computed: {
         formattedTime() {
             return formatTime(this.time)
+        }
+    },
+    methods: {
+        editTimer() {
+            console.log("woo")
         }
     }
 }
